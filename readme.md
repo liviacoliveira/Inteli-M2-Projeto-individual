@@ -51,8 +51,8 @@ meu-projeto/
 1. **Clonar o repositório:**
 
    ````
-   git clone https://github.com/seu-usuario/seu-projeto.git
-   cd seu-projeto
+   git clone https://github.com/liviacoliveira/Inteli-M2-Projeto-individual.git
+   cd Inteli-M2-Projeto-individual
    ````
 
 2. **Instalar as dependências:**
