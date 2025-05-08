@@ -19,6 +19,7 @@ Estrutura de pastas e arquivos
 -----------------------
 
 ````
+readme.md
 meu-projeto/
 │
 ├── documentos              
