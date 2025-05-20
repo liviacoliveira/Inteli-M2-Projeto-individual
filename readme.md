@@ -20,20 +20,31 @@ Estrutura de pastas e arquivos
 
 ````
 readme.md
+node_modules
+.gitignore             # Arquivo para ignorar arquivos no Git
+.env           
+jest.config.js         # Arquivo de configuração do Jest
+package-lock.json      # Gerenciador de dependências do Node.js
+package.json           # Gerenciador de dependências do Node.js
+readme.md              # Documentação do projeto (Markdown)
+server.js              # Arquivo principal que inicializa o servidor
+rest.http              # Teste de endpoints 
 meu-projeto/
 │
 ├── documentos              
 │   └── wad.md
 ├── config/                # Arquivos de configuração (ex: conexão com banco)
-│   └── db.js
+│   └── database.js
 ├── controllers/           # Lógica de controle das requisições
-│   └── userController.js
+│   └── CategoriaController.js
+│   └── ComentarioController.js
+│   └── EventoController.js
+│   └── InscricaoController.js
+│   └── UsuarioController.js
 ├── models/                # Definição de modelos de dados (estrutura do banco)
 │   └── UserModel.js
 ├── routes/                # Definição das rotas do sistema
 │   └── index.js
-│   └── frontRoutes.js
-│   └── userRoutes.js
 ├── services/              # Serviços auxiliares do sistema
 │   └── userService.js
 ├── assets/                # Arquivos públicos como imagens e fontes
@@ -56,14 +67,7 @@ meu-projeto/
 │   └── userModel.test.js
 │   └── userRoutes.test.js
 │   └── userService.test.js
-├── .gitignore             # Arquivo para ignorar arquivos no Git
-├── .env           
-├── jest.config.js         # Arquivo de configuração do Jest
-├── package-lock.json      # Gerenciador de dependências do Node.js
-├── package.json           # Gerenciador de dependências do Node.js
-├── readme.md              # Documentação do projeto (Markdown)
-├── server.js              # Arquivo principal que inicializa o servidor
-└── rest.http              # Teste de endpoints 
+
 ````
 
 ## Como executar o projeto localmente
