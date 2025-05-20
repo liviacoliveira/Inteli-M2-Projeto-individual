@@ -7,7 +7,6 @@ const EventoController = require('../controllers/EventoController');
 const UsuarioController = require('../controllers/UsuarioController');
 const InscricaoController = require('../controllers/InscricaoController');
 const CategoriaController = require('../controllers/CategoriaController');
-const ComentarioController = require('../controllers/ComentarioController');
 
 // Rotas de usuários
 router.post('/usuarios', UsuarioController.criarUsuario);
@@ -35,11 +34,5 @@ router.post('/categorias', CategoriaController.criarCategoria);
 router.get('/categorias', CategoriaController.listarCategorias);
 router.put('/categorias/:id', CategoriaController.atualizarCategoria);
 router.delete('/categorias/:id', CategoriaController.deletarCategoria);
-
-// Rotas de comentários
-router.post('/comentarios', ComentarioController.criarComentario);
-router.get('/comentarios', ComentarioController.listarComentarios);
-router.get('/comentarios/evento/:idEvento', ComentarioController.listarPorEvento);
-router.delete('/comentarios/:id', ComentarioController.deletarComentario);
 
 module.exports = router;

@@ -101,19 +101,101 @@ Os eventos são organizados por categorias, que permitem classificar e facilitar
 
 Todas essas relações são mantidas por meio de chaves estrangeiras, garantindo a integridade e consistência dos dados entre usuários, eventos, inscrições e categorias, proporcionando uma gestão eficiente e organizada da plataforma.
 
-### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+### 3.1.1 BD e Models 
 
-### 3.2. Arquitetura (Semana 5)
+Mesmo sem usar um ORM como o Sequelize, os models estão representados nas consultas SQL feitas nos controllers. Abaixo, mostramos como cada entidade é estruturada, com base nas operações de criação, leitura, atualização e remoção.
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
+---
 
-**Instruções para criação do diagrama de arquitetura**  
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
-  
-*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
+#### Usuário (`usuarios`)
+
+- **Campos:**
+  - `id`: inteiro, chave primária
+  - `nome`: texto, obrigatório
+  - `email`: texto, único e obrigatório
+  - `senha`: texto, obrigatório
+
+- **Operações:**
+  - Criar: `INSERT INTO usuarios (...)`
+  - Listar: `SELECT id, nome, email FROM usuarios`
+  - Buscar por ID: `SELECT ... WHERE id = $1`
+  - Atualizar: `UPDATE usuarios SET ... WHERE id = $1`
+  - Deletar: `DELETE FROM usuarios WHERE id = $1`
+
+---
+
+#### Categoria (`categorias`)
+
+- **Campos:**
+  - `id`: inteiro, chave primária
+  - `nome`: texto, obrigatório
+
+- **Operações:**
+  - Criar: `INSERT INTO categorias (nome) VALUES ($1)`
+  - Listar: `SELECT * FROM categorias`
+  - Atualizar: `UPDATE categorias SET nome = $1 WHERE id = $2`
+  - Deletar: `DELETE FROM categorias WHERE id = $1`
+
+---
+
+#### Evento (`eventos`)
+
+- **Campos:**
+  - `id`: inteiro, chave primária
+  - `titulo`: texto, obrigatório
+  - `descricao`: texto
+  - `hora_inicio`: timestamp
+  - `hora_fim`: timestamp
+  - `id_usuario`: inteiro, chave estrangeira para `usuarios`
+  - `id_categoria`: inteiro, chave estrangeira para `categorias`
+
+- **Operações:**
+  - Criar: `INSERT INTO eventos (...)`
+  - Listar: `SELECT * FROM eventos`
+  - Atualizar: `UPDATE eventos SET ...`
+  - Deletar: `DELETE FROM eventos WHERE id = $1`
+
+---
+
+#### Comentário (`comentarios`)
+
+- **Campos:**
+  - `id`: inteiro, chave primária
+  - `id_usuario`: inteiro, chave estrangeira
+  - `id_evento`: inteiro, chave estrangeira
+  - `texto`: texto
+  - `data_comentario`: timestamp (pode ser default)
+
+- **Operações:**
+  - Criar: `INSERT INTO comentarios (...)`
+  - Listar todos: `SELECT * FROM comentarios`
+  - Listar por evento: `SELECT * FROM comentarios WHERE id_evento = $1`
+  - Deletar: `DELETE FROM comentarios WHERE id = $1`
+
+---
+
+#### Inscrição (`inscricoes`)
+
+- **Campos:**
+  - `id`: inteiro, chave primária
+  - `id_usuario`: inteiro, chave estrangeira
+  - `id_evento`: inteiro, chave estrangeira
+  - `presenca`: boolean (pode ser nulo inicialmente)
+
+- **Operações:**
+  - Criar: `INSERT INTO inscricoes (...)`
+  - Listar: `SELECT * FROM inscricoes`
+  - Listar por usuário: `SELECT * FROM inscricoes WHERE id_usuario = $1`
+  - Listar por evento: `SELECT * FROM inscricoes WHERE id_evento = $1`
+  - Atualizar presença: `UPDATE inscricoes SET presenca = $1 WHERE id = $2`
+  - Deletar: `DELETE FROM inscricoes WHERE id = $1`
+
+
+### 3.2. Arquitetura 
+
+Um diagrama de arquitetura é um desenho técnico que mostra como as partes de um sistema de software estão organizadas e se comunicam. Ele ajuda a visualizar a estrutura geral da aplicação, facilitando o entendimento do funcionamento do sistema, mesmo antes da implementação. É uma ferramenta essencial para planejar, documentar e comunicar a estrutura do sistema entre desenvolvedores e outros envolvidos no projeto. Nesse projeto em específico, o diagrama serviu para mostrar a relação entre models, views e controllers, evidenciando como esses componentes interagem para garantir o fluxo de dados e a comunicação entre a interface do usuário e a lógica de negócio, como evidenciado abaixo:
+
+<img src = "../assets/diagrama-de-arquitetura.png">
 
 ### 3.3. Wireframes (Semana 03 - opcional)
 
@@ -128,9 +210,48 @@ Todas essas relações são mantidas por meio de chaves estrangeiras, garantindo
 
 *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
 
-### 3.6. WebAPI e endpoints (Semana 05)
+### 3.6. WebAPI e endpoints 
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
+A seguir, estão listados os principais endpoints da API do projeto, com seus métodos, URLs, finalidades e parâmetros para facilitar o uso do sistema.
+
+#### Usuários
+
+| Método | Endpoint          | Descrição                      | Parâmetros / Corpo                              |
+|--------|-------------------|--------------------------------|------------------------------------------------|
+| POST   | `/usuarios`       | Criar um novo usuário          | Corpo JSON: `{ nome, email, senha, ... }`      |
+| GET    | `/usuarios`       | Listar todos os usuários       | -                                              |
+| GET    | `/usuarios/:id`   | Buscar usuário pelo ID         | Parâmetro URL: `id` (ID do usuário)             |
+| PUT    | `/usuarios/:id`   | Atualizar dados do usuário     | Parâmetro URL: `id` <br> Corpo JSON com campos a atualizar |
+| DELETE | `/usuarios/:id`   | Deletar usuário pelo ID        | Parâmetro URL: `id`                             |
+
+#### Eventos
+
+| Método | Endpoint          | Descrição                      | Parâmetros / Corpo                              |
+|--------|-------------------|--------------------------------|------------------------------------------------|
+| POST   | `/eventos`        | Criar um novo evento           | Corpo JSON: `{ titulo, descricao, data, categoriaId, ... }` |
+| GET    | `/eventos`        | Listar todos os eventos        | -                                              |
+| PUT    | `/eventos/:id`    | Editar um evento pelo ID       | Parâmetro URL: `id` <br> Corpo JSON com campos a atualizar |
+| DELETE | `/eventos/:id`    | Excluir evento pelo ID         | Parâmetro URL: `id`                             |
+
+#### Inscrições
+
+| Método | Endpoint                     | Descrição                                   | Parâmetros / Corpo                                |
+|--------|------------------------------|---------------------------------------------|--------------------------------------------------|
+| POST   | `/inscricoes`                | Inscrever um usuário em um evento           | Corpo JSON: `{ usuarioId, eventoId, ... }`       |
+| GET    | `/inscricoes`                | Listar todas as inscrições                   | -                                                |
+| GET    | `/inscricoes/usuario/:idUsuario` | Listar inscrições de um usuário específico  | Parâmetro URL: `idUsuario`                        |
+| GET    | `/inscricoes/evento/:idEvento`   | Listar inscrições de um evento específico    | Parâmetro URL: `idEvento`                         |
+| PUT    | `/inscricoes/:id`            | Atualizar presença ou dados da inscrição    | Parâmetro URL: `id` <br> Corpo JSON com dados a atualizar |
+| DELETE | `/inscricoes/:id`            | Cancelar inscrição pelo ID                   | Parâmetro URL: `id`                               |
+
+#### Categorias
+
+| Método | Endpoint          | Descrição                       | Parâmetros / Corpo                              |
+|--------|-------------------|---------------------------------|------------------------------------------------|
+| POST   | `/categorias`     | Criar uma nova categoria        | Corpo JSON: `{ nome, descricao }`               |
+| GET    | `/categorias`     | Listar todas as categorias      | -                                              |
+| PUT    | `/categorias/:id` | Atualizar categoria pelo ID     | Parâmetro URL: `id` <br> Corpo JSON com dados a atualizar |
+| DELETE | `/categorias/:id` | Deletar categoria pelo ID       | Parâmetro URL: `id`                             |
 
 ### 3.7 Interface e Navegação (Semana 07)
 
@@ -153,8 +274,3 @@ Todas essas relações são mantidas por meio de chaves estrangeiras, garantindo
 
 
 ## <a name="c5"></a>5. Referências
-
-_Incluir as principais referências de seu projeto, para que o leitor possa consultar caso ele se interessar em aprofundar._<br>
-
----
----
