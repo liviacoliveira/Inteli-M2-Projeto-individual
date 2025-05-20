@@ -1,8 +1,8 @@
-CREATE TABLE usuarios ( -- cria uma tabela de usuários
-  id SERIAL PRIMARY KEY, -- insere o id do usuário como uma chave primária e de incremento automático
-  nome VARCHAR(100) NOT NULL, -- adiciona o campo do nome como um varchar (texto de no máximo 100 caracteres) não nulo
-  email VARCHAR(100) NOT NULL UNIQUE, -- adiciona o campo do email como um varchar (texto de no máximo 100 caracteres) não nulo e único
-  senha VARCHAR(255) NOT NULL -- adiciona o campo da senha como um varchar (texto de no máximo 255 caracteres) não nulo
+CREATE TABLE usuarios (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE eventos ( -- cria a tabela de eventos
@@ -14,7 +14,6 @@ CREATE TABLE eventos ( -- cria a tabela de eventos
   hora_fim TIME, -- insere o horário de término do evento
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) -- referencia o id do usuário como uma chave estrangeira fazendo alusão a tabela (usuarios)
 );
-
 
 CREATE TABLE inscricoes ( -- cria a tabela de inscrições
   id SERIAL PRIMARY KEY, -- insere o id da inscrição como uma chave primária e de incremento automático
@@ -34,12 +33,14 @@ CREATE TABLE categorias (
 ALTER TABLE eventos ADD COLUMN id_categoria INT;
 ALTER TABLE eventos ADD FOREIGN KEY (id_categoria) REFERENCES categorias(id);
 
-CREATE TABLE comentarios (
-  id SERIAL PRIMARY KEY,
-  id_usuario INT NOT NULL,
-  id_evento INT NOT NULL,
-  texto TEXT NOT NULL,
-  data_comentario TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-  FOREIGN KEY (id_evento) REFERENCES eventos(id)
-);
+INSERT INTO usuarios (nome, email, senha)
+VALUES ('João da Silva', 'joao@email.com', 'senha123');
+
+SELECT * FROM usuarios WHERE id = 1;
+
+UPDATE usuarios
+SET nome = 'João Pedro da Silva', email = 'joaopedro@email.com'
+WHERE id = 1;
+
+DELETE FROM usuarios
+WHERE id = 1;

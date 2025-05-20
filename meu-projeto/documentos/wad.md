@@ -18,11 +18,11 @@
 
 RolêMarcado é uma plataforma web desenvolvida com Node.js e Express.js, voltada para a divulgação, organização e inscrição em eventos, estruturada com base no padrão arquitetural MVC (Model-View-Controller). O sistema foi criado com o objetivo de facilitar o acesso a eventos públicos, permitindo que usuários encontrem, avaliem e se inscrevam em atividades culturais, acadêmicas ou sociais com poucos cliques.
 
-A aplicação oferece uma interface simples onde os usuários podem se cadastrar, navegar por uma lista de eventos disponíveis, filtrá-los por categorias e visualizar informações detalhadas, como título, descrição, data, horário, local e categoria do evento. Os usuários podem também interagir por meio de comentários nos eventos, contribuindo com avaliações e opiniões. Caso desejem participar, é possível realizar a inscrição diretamente pela plataforma, com o registro da data da inscrição e controle de presença no evento.
+A aplicação oferece uma interface simples onde os usuários podem se cadastrar, navegar por uma lista de eventos disponíveis, filtrá-los por categorias e visualizar informações detalhadas, como título, descrição, data, horário, local e categoria do evento. Caso desejem participar, é possível realizar a inscrição diretamente pela plataforma, com o registro da data da inscrição e controle de presença no evento.
 
 Todas as inscrições ficam registradas no sistema, garantindo que o usuário possa acompanhar os eventos dos quais participará e que os organizadores tenham controle sobre a participação dos inscritos.
 
-Além do código, o projeto inclui um modelo lógico e físico do banco de dados abrangente, com entidades como usuários, eventos, inscrições, categorias e comentários, interligadas por meio de chaves estrangeiras. Essa estrutura garante um controle claro e eficiente sobre participantes, eventos, avaliações e categorias.
+Além do código, o projeto inclui um modelo lógico e físico do banco de dados abrangente, com entidades como usuários, eventos, inscrições, categorias e comentários, interligadas por meio de chaves estrangeiras. Essa estrutura garante um controle claro e eficiente sobre participantes, eventos, inscrições e categorias.
 
 Este sistema é o ponto de partida para uma plataforma completa de gestão de eventos, pensada para ser simples, acessível e útil para qualquer tipo de público.
 
@@ -47,11 +47,11 @@ A seguir é possível visualizar o modelo relacional inicial do projeto, assim c
 <img src = "../assets/modelo-banco.png">
 
 ``` 
-CREATE TABLE usuarios ( -- cria uma tabela de usuários
-  id SERIAL PRIMARY KEY, -- insere o id do usuário como uma chave primária e de incremento automático
-  nome VARCHAR(100) NOT NULL, -- adiciona o campo do nome como um varchar (texto de no máximo 100 caracteres) não nulo
-  email VARCHAR(100) NOT NULL UNIQUE, -- adiciona o campo do email como um varchar (texto de no máximo 100 caracteres) não nulo e único
-  senha VARCHAR(255) NOT NULL -- adiciona o campo da senha como um varchar (texto de no máximo 255 caracteres) não nulo
+CREATE TABLE usuarios (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE eventos ( -- cria a tabela de eventos
@@ -63,7 +63,6 @@ CREATE TABLE eventos ( -- cria a tabela de eventos
   hora_fim TIME, -- insere o horário de término do evento
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) -- referencia o id do usuário como uma chave estrangeira fazendo alusão a tabela (usuarios)
 );
-
 
 CREATE TABLE inscricoes ( -- cria a tabela de inscrições
   id SERIAL PRIMARY KEY, -- insere o id da inscrição como uma chave primária e de incremento automático
@@ -83,25 +82,24 @@ CREATE TABLE categorias (
 ALTER TABLE eventos ADD COLUMN id_categoria INT;
 ALTER TABLE eventos ADD FOREIGN KEY (id_categoria) REFERENCES categorias(id);
 
-CREATE TABLE comentarios (
-  id SERIAL PRIMARY KEY,
-  id_usuario INT NOT NULL,
-  id_evento INT NOT NULL,
-  texto TEXT NOT NULL,
-  data_comentario TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-  FOREIGN KEY (id_evento) REFERENCES eventos(id)
-);
+INSERT INTO usuarios (nome, email, senha)
+VALUES ('João da Silva', 'joao@email.com', 'senha123');
 
+SELECT * FROM usuarios WHERE id = 1;
+
+UPDATE usuarios
+SET nome = 'João Pedro da Silva', email = 'joaopedro@email.com'
+WHERE id = 1;
+
+DELETE FROM usuarios
+WHERE id = 1; 
 ```
 
 O modelo de banco de dados da plataforma RolêMarcado é composto por cinco entidades principais: usuários, eventos, inscrições, categorias e comentários. Cada usuário pode criar vários eventos, e cada evento está associado a um único usuário. Usuários podem se inscrever em múltiplos eventos, e cada evento pode ter diversas inscrições.
 
 Os eventos são organizados por categorias, que permitem classificar e facilitar a busca por tipos específicos de eventos. A tabela de inscrições registra não apenas o vínculo entre usuário e evento, mas também a data da inscrição e se o participante esteve presente no evento, por meio de um campo booleano.
 
-Além disso, a plataforma conta com um sistema de comentários, onde usuários podem deixar avaliações e opiniões sobre os eventos, registrando o texto do comentário e a data em que foi realizado.
-
-Todas essas relações são mantidas por meio de chaves estrangeiras, garantindo a integridade e consistência dos dados entre usuários, eventos, inscrições, categorias e comentários, proporcionando uma gestão eficiente e organizada da plataforma.
+Todas essas relações são mantidas por meio de chaves estrangeiras, garantindo a integridade e consistência dos dados entre usuários, eventos, inscrições e categorias, proporcionando uma gestão eficiente e organizada da plataforma.
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*

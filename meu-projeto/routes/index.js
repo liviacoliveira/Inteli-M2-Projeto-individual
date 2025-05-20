@@ -1,8 +1,45 @@
-const express = require ('express');
+// index.js
+const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Rota principal funcionando!');
-});
+// Controllers
+const EventoController = require('../controllers/EventoController');
+const UsuarioController = require('../controllers/UsuarioController');
+const InscricaoController = require('../controllers/InscricaoController');
+const CategoriaController = require('../controllers/CategoriaController');
+const ComentarioController = require('../controllers/ComentarioController');
+
+// Rotas de usuários
+router.post('/usuarios', UsuarioController.criarUsuario);
+router.get('/usuarios', UsuarioController.listarUsuarios);
+router.get('/usuarios/:id', UsuarioController.buscarUsuarioPorId);
+router.put('/usuarios/:id', UsuarioController.atualizarUsuario);
+router.delete('/usuarios/:id', UsuarioController.deletarUsuario);
+
+// Rotas de eventos
+router.post('/eventos', EventoController.criarEvento);
+router.get('/eventos', EventoController.listarEventos);
+router.put('/eventos/:id', EventoController.editarEvento);
+router.delete('/eventos/:id', EventoController.excluirEvento);
+
+// Rotas de inscrições
+router.post('/inscricoes', InscricaoController.inscreverUsuario);
+router.get('/inscricoes', InscricaoController.listarInscricoes);
+router.get('/inscricoes/usuario/:idUsuario', InscricaoController.listarInscricoesPorUsuario);
+router.get('/inscricoes/evento/:idEvento', InscricaoController.listarInscricoesPorEvento);
+router.put('/inscricoes/:id', InscricaoController.atualizarPresenca);
+router.delete('/inscricoes/:id', InscricaoController.cancelarInscricao);
+
+// Rotas de categorias
+router.post('/categorias', CategoriaController.criarCategoria);
+router.get('/categorias', CategoriaController.listarCategorias);
+router.put('/categorias/:id', CategoriaController.atualizarCategoria);
+router.delete('/categorias/:id', CategoriaController.deletarCategoria);
+
+// Rotas de comentários
+router.post('/comentarios', ComentarioController.criarComentario);
+router.get('/comentarios', ComentarioController.listarComentarios);
+router.get('/comentarios/evento/:idEvento', ComentarioController.listarPorEvento);
+router.delete('/comentarios/:id', ComentarioController.deletarComentario);
 
 module.exports = router;
