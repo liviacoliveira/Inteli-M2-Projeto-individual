@@ -30,13 +30,11 @@ Este sistema é o ponto de partida para uma plataforma completa de gestão de ev
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
-### 2.1. Personas (Semana 01 - opcional)
+### 2.1. Personas 
 
-*Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.*
 
-### 2.2. User Stories (Semana 01 - opcional)
+### 2.2. User Stories
 
-*Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.*
 
 ---
 
@@ -44,7 +42,10 @@ Este sistema é o ponto de partida para uma plataforma completa de gestão de ev
 
 ### 3.1. Modelagem do banco de dados  
 A seguir é possível visualizar o modelo relacional inicial do projeto, assim como seu respectivo modelo físico:
+
+<p align="center"><em>Figura 1: Modelagem do banco de dados</em></p>
 <img src = "../assets/modelo-banco.png">
+<p align="center"><em>Fonte: Material produzido pelo autor, 2025</em></p>
 
 ``` 
 CREATE TABLE usuarios (
@@ -195,26 +196,28 @@ Mesmo sem usar um ORM como o Sequelize, os models estão representados nas consu
 
 Um diagrama de arquitetura é um desenho técnico que mostra como as partes de um sistema de software estão organizadas e se comunicam. Ele ajuda a visualizar a estrutura geral da aplicação, facilitando o entendimento do funcionamento do sistema, mesmo antes da implementação. É uma ferramenta essencial para planejar, documentar e comunicar a estrutura do sistema entre desenvolvedores e outros envolvidos no projeto. Nesse projeto em específico, o diagrama serviu para mostrar a relação entre models, views e controllers, evidenciando como esses componentes interagem para garantir o fluxo de dados e a comunicação entre a interface do usuário e a lógica de negócio, como evidenciado abaixo:
 
+<p align="center"><em>Figura 2: Diagrama de arquitetura</em></p>
 <img src = "../assets/diagrama-de-arquitetura.png">
+<p align="center"><em>Fonte: Material produzido pelo autor, 2025</em></p>
 
-### 3.3. Wireframes (Semana 03 - opcional)
-
-*Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).*
-
-### 3.4. Guia de estilos (Semana 05 - opcional)
-
-*Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.*
+### 3.3. Wireframes 
 
 
-### 3.5. Protótipo de alta fidelidade (Semana 05 - opcional)
 
-*Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
+### 3.4. Guia de estilos 
+
+
+
+### 3.5. Protótipo de alta fidelidade 
+
 
 ### 3.6. WebAPI e endpoints 
 
 A seguir, estão listados os principais endpoints da API do projeto, com seus métodos, URLs, finalidades e parâmetros para facilitar o uso do sistema.
 
 #### Usuários
+
+<p align="center"><em>Tabela 1: Métodos de usuários </em></p>
 
 | Método | Endpoint          | Descrição                      | Parâmetros / Corpo                              |
 |--------|-------------------|--------------------------------|------------------------------------------------|
@@ -224,7 +227,11 @@ A seguir, estão listados os principais endpoints da API do projeto, com seus m�
 | PUT    | `/usuarios/:id`   | Atualizar dados do usuário     | Parâmetro URL: `id` <br> Corpo JSON com campos a atualizar |
 | DELETE | `/usuarios/:id`   | Deletar usuário pelo ID        | Parâmetro URL: `id`                             |
 
+<p align="center"><em>Fonte: Material produzido pelo autor, 2025.</em></p>
+
 #### Eventos
+
+<p align="center"><em>Tabela 2: Métodos de eventos </em></p>
 
 | Método | Endpoint          | Descrição                      | Parâmetros / Corpo                              |
 |--------|-------------------|--------------------------------|------------------------------------------------|
@@ -233,7 +240,11 @@ A seguir, estão listados os principais endpoints da API do projeto, com seus m�
 | PUT    | `/eventos/:id`    | Editar um evento pelo ID       | Parâmetro URL: `id` <br> Corpo JSON com campos a atualizar |
 | DELETE | `/eventos/:id`    | Excluir evento pelo ID         | Parâmetro URL: `id`                             |
 
+<p align="center"><em>Fonte: Material produzido pelos autores, 2025.</em></p>
+
 #### Inscrições
+
+<p align="center"><em>Tabela 3: Métodos de inscrições</em></p>
 
 | Método | Endpoint                     | Descrição                                   | Parâmetros / Corpo                                |
 |--------|------------------------------|---------------------------------------------|--------------------------------------------------|
@@ -244,7 +255,11 @@ A seguir, estão listados os principais endpoints da API do projeto, com seus m�
 | PUT    | `/inscricoes/:id`            | Atualizar presença ou dados da inscrição    | Parâmetro URL: `id` <br> Corpo JSON com dados a atualizar |
 | DELETE | `/inscricoes/:id`            | Cancelar inscrição pelo ID                   | Parâmetro URL: `id`                               |
 
+<p align="center"><em>Fonte: Material produzido pelos autores, 2025.</em></p>
+
 #### Categorias
+
+<p align="center"><em>Tabela 4: Métodos de categorias</em></p>
 
 | Método | Endpoint          | Descrição                       | Parâmetros / Corpo                              |
 |--------|-------------------|---------------------------------|------------------------------------------------|
@@ -253,11 +268,48 @@ A seguir, estão listados os principais endpoints da API do projeto, com seus m�
 | PUT    | `/categorias/:id` | Atualizar categoria pelo ID     | Parâmetro URL: `id` <br> Corpo JSON com dados a atualizar |
 | DELETE | `/categorias/:id` | Deletar categoria pelo ID       | Parâmetro URL: `id`                             |
 
-### 3.7 Interface e Navegação (Semana 07)
+<p align="center"><em>Fonte: Material produzido pelos autores, 2025.</em></p>
 
-*Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+### 3.7 Interface e Navegação 
+<div>
+O frontend da aplicação “RolêMarcado” foi desenvolvido com foco em simplicidade, usabilidade e visual moderno. O sistema utiliza EJS para renderizar dinamicamente os dados recebidos do backend, e um arquivo CSS personalizado para garantir um design coerente e amigável ao usuário.
 
+A página principal dá as boas-vindas ao usuário com a mensagem "Bem-vindo ao RolêMarcado" e exibe as seções de forma organizada por cartões. Cada seção é separada por um card com título em negrito e botões bem destacados, facilitando a navegação e interação.
+
+##### Seção de Eventos
+- Exibe todos os eventos cadastrados com informações completas como nome, criador, descrição, horário de início e fim, e categoria.
+
+- Permite adicionar novos eventos através de um botão visível "Adicionar Evento".
+
+- Cada evento pode ser excluído individualmente com o botão "Excluir", posicionado à direita para maior usabilidade.
+
+##### Seção de Usuários
+- Permite o cadastro e exibição de usuários participantes.
+
+- Oferece um botão "Adicionar Usuário" e a funcionalidade de remoção de usuários listados.
+
+##### Seção de Inscrições
+- Apresenta inscrições vinculadas entre usuários e eventos, com detalhes como IDs, presença confirmada e data/hora da inscrição.
+
+- Permite adicionar novas inscrições com o botão "Adicionar Inscrição" e remover inscrições existentes com "Excluir".
+
+##### Seção de Categorias
+- Lista as categorias criadas, permitindo classificações como “festas”.
+
+- Possui campo de input para adicionar novas categorias com o botão "Adicionar".
+
+- Categorias podem ser removidas diretamente com o botão "Remover".
+<div>
+
+<p align="center"><em>Figura 3: Página Inicial do RolêMarcado</em></p>
+<img src = "../assets/site.png">
+<p align="center"><em>Fonte: Material produzido pelo autor,2025</em></p>
+
+<p align="center"><em>Figura 4: Página Inicial do RolêMarcado</em></p>
+<img src = "../assets/site2.png">
+<p align="center"><em>Fonte: Material produzido pelo autor,2025</em></p>
 ---
+
 
 ## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
 

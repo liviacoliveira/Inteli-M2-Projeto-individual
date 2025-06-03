@@ -1,18 +1,19 @@
 const db = require('../config/database');
 
 const InscricaoController = {
-  async inscreverUsuario(req, res) {
-    const { id_usuario, id_evento } = req.body;
-    try {
-      const result = await db.query(
-        'INSERT INTO inscricoes (id_usuario, id_evento) VALUES ($1, $2) RETURNING *',
-        [id_usuario, id_evento]
-      );
-      res.status(201).json(result.rows[0]);
-    } catch (error) {
-      res.status(500).json({ erro: 'Erro ao inscrever usuário no evento' });
-    }
-  },
+ async inscreverUsuario(req, res) {
+  const { id_usuario, id_evento } = req.body;
+  try {
+    const result = await db.query(
+      'INSERT INTO inscricoes (id_usuario, id_evento, presenca) VALUES ($1, $2, TRUE) RETURNING *',
+      [id_usuario, id_evento]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao inscrever usuário no evento' });
+  }
+},
+
 
   async listarInscricoes(req, res) {
     try {

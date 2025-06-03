@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>RolêMarcado</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    // === USUÁRIOS ===
+    async function adicionarUsuario() {
+      const nome = prompt("Nome do usuário:");
+      const email = prompt("Email:");
+      const senha = prompt("Senha:");
+
+      const res = await fetch('/api/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, senha })
+      });
+
+      if (res.ok) location.reload();
+      else alert("Erro ao adicionar usuário");
+    }
+
+    async function deletarUsuario(id) {
+      if (!confirm("Tem certeza que deseja excluir este usuário?")) return;
+
+      const res = await fetch(`/api/usuarios/${id}`, { method: 'DELETE' });
+      if (res.ok) location.reload();
+      else alert("Erro ao deletar usuário");
+    }
+
+    // === EVENTOS ===
+    async function adicionarEvento() {
+      const titulo = prompt("Título:");
+      const descricao = prompt("Descrição:");
+      const hora_inicio = prompt("Hora início (hh:mm):");
+      const hora_fim = prompt("Hora fim (hh:mm):");
+      const id_usuario = prompt("ID do usuário criador:");
+      const id_categoria = prompt("ID da categoria:");
+
+      const res = await fetch('/api/eventos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ titulo, descricao, hora_inicio, hora_fim, id_usuario, id_categoria })
+      });
+
+      if (res.ok) location.reload();
+      else alert("Erro ao adicionar evento");
+    }
+
+    async function deletarEvento(id) {
+      if (!confirm("Deseja excluir este evento?")) return;
+
+      const res = await fetch(`/api/eventos/${id}`, { method: 'DELETE' });
+      if (res.ok) location.reload();
+      else alert("Erro ao excluir evento");
+    }
+
+    // === INSCRIÇÕES ===
+    async function adicionarInscricao() {
+      const id_usuario = prompt("ID do usuário:");
+      const id_evento = prompt("ID do evento:");
+
+      const res = await fetch('/api/inscricoes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_usuario, id_evento })
+      });
+
+      if (res.ok) location.reload();
+      else alert("Erro ao adicionar inscrição");
+    }
+
+    async function deletarInscricao(id) {
+      if (!confirm("Deseja excluir esta inscrição?")) return;
+
+      const res = await fetch(`/api/inscricoes/${id}`, { method: 'DELETE' });
+      if (res.ok) location.reload();
+      else alert("Erro ao excluir inscrição");
+    }
+  </script>
+</head>
+<body>
+  <h1>Bem-vindo ao RolêMarcado</h1>
+
+  <!-- EVENTOS -->
+  <section>
+    <h2>Eventos</h2>
+    <button onclick="adicionarEvento()">Adicionar Evento</button>
+    <ul>
+      <% eventos.forEach(evento => { %>
+        <li>
+          <strong><%= evento.titulo %></strong> por <%= evento.nome_usuario %> <br>
+          <%= evento.descricao %> <br>
+          Início: <%= evento.hora_inicio %>, Fim: <%= evento.hora_fim %> <br>
+          Categoria: <%= evento.nome_categoria || 'Sem categoria' %> <br>
+          <button onclick="deletarEvento(<%= evento.id %>)">Excluir</button>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <!-- USUÁRIOS -->
+  <section>
+    <h2>Usuários</h2>
+    <button onclick="adicionarUsuario()">Adicionar Usuário</button>
+    <ul>
+      <% usuarios.forEach(usuario => { %>
+        <li>
+          <%= usuario.nome %> (<%= usuario.email %>)
+          <button onclick="deletarUsuario(<%= usuario.id %>)">Excluir</button>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <!-- INSCRIÇÕES -->
+  <section>
+    <h2>Inscrições</h2>
+    <button onclick="adicionarInscricao()">Adicionar Inscrição</button>
+    <ul>
+      <% inscricoes.forEach(inscricao => { %>
+        <li>
+          Usuário ID: <%= inscricao.id_usuario %>, Evento ID: <%= inscricao.id_evento %>, 
+          Presença: <%= inscricao.presenca ? 'Sim' : 'Não' %>, 
+          Data: <%= inscricao.data_inscricao.toLocaleString ? inscricao.data_inscricao.toLocaleString() : inscricao.data_inscricao %>
+          <button onclick="deletarInscricao(<%= inscricao.id %>)">Excluir</button>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section>
+  <h2>Categorias</h2>
+  <ul id="lista-categorias">
+    <% categorias.forEach(cat => { %>
+      <li id="categoria-<%= cat.id %>">
+        <%= cat.nome %>
+        <button onclick="removerCategoria(<%= cat.id %>)">Remover</button>
+      </li>
+    <% }) %>
+  </ul>
+
+  <h3>Adicionar Categoria</h3>
+  <input type="text" id="nome-categoria" placeholder="Nome da categoria">
+  <button onclick="adicionarCategoria()">Adicionar</button>
+</section>
+
+<script>
+  async function adicionarCategoria() {
+    const nome = document.getElementById('nome-categoria').value;
+    if (!nome) return alert('Informe o nome da categoria.');
+
+    try {
+      const res = await fetch('/api/categorias', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome })
+      });
+
+      if (res.ok) {
+        location.reload(); // recarrega para mostrar a nova categoria
+      } else {
+        alert('Erro ao adicionar categoria');
+      }
+    } catch (err) {
+      console.error('Erro ao adicionar categoria:', err);
+    }
+  }
+
+  async function removerCategoria(id) {
+    if (!confirm('Tem certeza que deseja remover esta categoria?')) return;
+
+    try {
+      const res = await fetch(`/api/categorias/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (res.ok) {
+        document.getElementById(`categoria-${id}`).remove();
+      } else {
+        alert('Erro ao remover categoria');
+      }
+    } catch (err) {
+      console.error('Erro ao remover categoria:', err);
+    }
+  }
+</script>
+
+
+</body>
+</html>

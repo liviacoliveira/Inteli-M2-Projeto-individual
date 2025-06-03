@@ -45,6 +45,7 @@ meu-projeto/
 │   └── UserModel.js
 ├── routes/                # Definição das rotas do sistema
 │   └── index.js
+│   └── view.js
 ├── services/              # Serviços auxiliares do sistema
 │   └── userService.js
 ├── assets/                # Arquivos públicos como imagens e fontes
@@ -55,19 +56,14 @@ meu-projeto/
 ├── views/
 │   └── components/
 │       └── header.ejs
-│   └── css/
-│       └── style.css
 │   └── layout/
 │       └── main.ejs
 │   └── pages/
 │       └── page1.ejs
 │       └── page2.ejs
-├── tests/                 # Arquivos de testes unitários
-│   └── userController.test.js
-│   └── userModel.test.js
-│   └── userRoutes.test.js
-│   └── userService.test.js
-
+├── public/
+│   └── css/
+│       └── styler.css
 ````
 
 ## Como executar o projeto localmente
