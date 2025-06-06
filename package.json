@@ -5,5 +5,24 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "pg": "^8.16.0"
-  }
+  },
+  "name": "inteli-m2-projeto-individual",
+  "version": "1.0.0",
+  "description": "Este projeto é referente a ponderada do módulo 2 de programação do professor Cristiano Benites referente a banco de dados relacional e sua modelagem.",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liviacoliveira/Inteli-M2-Projeto-individual.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liviacoliveira/Inteli-M2-Projeto-individual/issues"
+  },
+  "homepage": "https://github.com/liviacoliveira/Inteli-M2-Projeto-individual#readme"
 }

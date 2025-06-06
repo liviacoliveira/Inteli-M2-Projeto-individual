@@ -29,32 +29,6 @@
       else alert("Erro ao deletar usuário");
     }
 
-    // === EVENTOS ===
-    async function adicionarEvento() {
-      const titulo = prompt("Título:");
-      const descricao = prompt("Descrição:");
-      const hora_inicio = prompt("Hora início (hh:mm):");
-      const hora_fim = prompt("Hora fim (hh:mm):");
-      const id_usuario = prompt("ID do usuário criador:");
-      const id_categoria = prompt("ID da categoria:");
-
-      const res = await fetch('/api/eventos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ titulo, descricao, hora_inicio, hora_fim, id_usuario, id_categoria })
-      });
-
-      if (res.ok) location.reload();
-      else alert("Erro ao adicionar evento");
-    }
-
-    async function deletarEvento(id) {
-      if (!confirm("Deseja excluir este evento?")) return;
-
-      const res = await fetch(`/api/eventos/${id}`, { method: 'DELETE' });
-      if (res.ok) location.reload();
-      else alert("Erro ao excluir evento");
-    }
 
     // === INSCRIÇÕES ===
     async function adicionarInscricao() {
@@ -78,6 +52,26 @@
       if (res.ok) location.reload();
       else alert("Erro ao excluir inscrição");
     }
+
+    async function deletarEvento(id) {
+      if (!confirm("Tem certeza que deseja excluir este evento?")) return;
+
+      try {
+        const res = await fetch(`/api/eventos/${id}`, {
+          method: 'DELETE'
+        });
+
+        if (res.ok) {
+          location.reload();
+        } else {
+          alert('Erro ao excluir evento');
+        }
+      } catch (err) {
+        console.error('Erro ao excluir evento:', err);
+        alert('Erro ao excluir evento');
+      }
+    }
+    
   </script>
 </head>
 <body>
@@ -86,7 +80,7 @@
   <!-- EVENTOS -->
   <section>
     <h2>Eventos</h2>
-    <button onclick="adicionarEvento()">Adicionar Evento</button>
+  <a href="/eventos/novo"><button>Cadastrar evento</button></a>
     <ul>
       <% eventos.forEach(evento => { %>
         <li>

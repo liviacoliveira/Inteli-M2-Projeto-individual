@@ -279,9 +279,14 @@ A página principal dá as boas-vindas ao usuário com a mensagem "Bem-vindo ao 
 ##### Seção de Eventos
 - Exibe todos os eventos cadastrados com informações completas como nome, criador, descrição, horário de início e fim, e categoria.
 
-- Permite adicionar novos eventos através de um botão visível "Adicionar Evento".
-
 - Cada evento pode ser excluído individualmente com o botão "Excluir", posicionado à direita para maior usabilidade.
+
+##### Formulário de Evento
+- Acessada por meio do botão “Cadastrar evento” na seção de eventos da página principal.
+
+- Exibe um formulário limpo e objetivo, permitindo ao usuário preencher título, descrição, horário de início e fim, além de selecionar a categoria do evento.
+
+- Ao enviar, os dados são enviados ao backend para cadastro no banco de dados, e o usuário é redirecionado de volta à página principal.
 
 ##### Seção de Usuários
 - Permite o cadastro e exibição de usuários participantes.
@@ -308,6 +313,11 @@ A página principal dá as boas-vindas ao usuário com a mensagem "Bem-vindo ao 
 <p align="center"><em>Figura 4: Página Inicial do RolêMarcado</em></p>
 <img src = "../assets/site2.png">
 <p align="center"><em>Fonte: Material produzido pelo autor,2025</em></p>
+
+<p align="center"><em>Figura 5: Formulário para criação de eventos</em></p>
+<img src = "../assets/formulario-evento.png">
+<p align="center"><em>Fonte: Material produzido pelo autor,2025</em></p>
+
 ---
 
 

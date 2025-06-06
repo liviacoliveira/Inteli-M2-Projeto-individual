@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database'); // ajuste conforme sua estrutura
+const db = require('../config/database');
 
+// Página inicial (lista de tudo)
 router.get('/', async (req, res) => {
   try {
     const [eventos, usuarios, inscricoes, categorias] = await Promise.all([
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
       db.query('SELECT * FROM categorias')
     ]);
 
-    res.render('pages/index', { // ajuste 'pages' se seu index.ejs estiver em outra pasta
+    res.render('pages/index', {
       eventos: eventos.rows,
       usuarios: usuarios.rows,
       inscricoes: inscricoes.rows,
@@ -33,6 +34,24 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error('Erro ao carregar a página inicial:', error);
     res.status(500).send('Erro ao carregar a página inicial');
+  }
+});
+
+// Página do formulário para novo evento
+router.get('/eventos/novo', async (req, res) => {
+  try {
+    const [usuarios, categorias] = await Promise.all([
+      db.query('SELECT * FROM usuarios'),
+      db.query('SELECT * FROM categorias')
+    ]);
+
+    res.render('pages/form-evento', {
+      usuarios: usuarios.rows,
+      categorias: categorias.rows
+    });
+  } catch (error) {
+    console.error('Erro ao carregar o formulário de evento:', error);
+    res.status(500).send('Erro ao carregar o formulário');
   }
 });
 

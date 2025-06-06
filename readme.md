@@ -45,7 +45,7 @@ meu-projeto/
 │   └── UserModel.js
 ├── routes/                # Definição das rotas do sistema
 │   └── index.js
-│   └── view.js
+│   └── views.js
 ├── services/              # Serviços auxiliares do sistema
 │   └── userService.js
 ├── assets/                # Arquivos públicos como imagens e fontes
@@ -55,15 +55,14 @@ meu-projeto/
 │   └── modelo-fisico.sql
 ├── views/
 │   └── components/
-│       └── header.ejs
 │   └── layout/
 │       └── main.ejs
 │   └── pages/
-│       └── page1.ejs
-│       └── page2.ejs
+│       └── form-evento.ejs
+│       └── index.ejs
 ├── public/
 │   └── css/
-│       └── styler.css
+│       └── style.css
 ````
 
 ## Como executar o projeto localmente
@@ -78,7 +77,7 @@ meu-projeto/
 2. **Instalar as dependências:**
 
 ````
- npm install 
+ npm install express dotenv pg
  ````
 
 3. **Inicie o servidor:**

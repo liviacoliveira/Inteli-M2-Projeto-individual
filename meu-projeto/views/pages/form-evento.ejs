@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Novo Evento</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Criar Novo Evento</h1>
+
+  <form action="/api/eventos" method="POST">
+    <label for="titulo">Título:</label><br>
+    <input type="text" id="titulo" name="titulo" required><br><br>
+
+    <label for="descricao">Descrição:</label><br>
+    <textarea id="descricao" name="descricao" required></textarea><br><br>
+
+    <label for="hora_inicio">Hora de Início:</label><br>
+    <input type="time" id="hora_inicio" name="hora_inicio" required><br><br>
+
+    <label for="hora_fim">Hora de Fim:</label><br>
+    <input type="time" id="hora_fim" name="hora_fim" required><br><br>
+
+    <label for="id_usuario">Usuário Criador:</label><br>
+    <select id="id_usuario" name="id_usuario" required>
+      <% usuarios.forEach(usuario => { %>
+        <option value="<%= usuario.id %>"><%= usuario.nome %></option>
+      <% }) %>
+    </select><br><br>
+
+    <label for="id_categoria">Categoria:</label><br>
+    <select id="id_categoria" name="id_categoria" required>
+      <% categorias.forEach(categoria => { %>
+        <option value="<%= categoria.id %>"><%= categoria.nome %></option>
+      <% }) %>
+    </select><br><br>
+
+    <button type="submit">Salvar Evento</button>
+    <a href="/"><button type="button">Cancelar</button></a>
+  </form>
+</body>
+</html>

@@ -12,7 +12,8 @@ exports.criarEvento = async (req, res) => {
 
   try {
     const result = await pool.query(query, [titulo, id_usuario, descricao, hora_inicio, hora_fim, id_categoria]);
-    res.status(201).json(result.rows[0]);
+     res.redirect('/');
+
   } catch (err) {
   console.error('Erro real ao criar evento:', err); 
   res.status(500).json({ error: 'Erro ao criar evento' });
