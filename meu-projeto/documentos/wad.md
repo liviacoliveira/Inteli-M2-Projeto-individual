@@ -328,11 +328,12 @@ A página principal dá as boas-vindas ao usuário com a mensagem "Bem-vindo ao 
 *VIDEO: Insira o link do vídeo demonstrativo nesta seção*
 *Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
 
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
+### 4.2 Conclusões e Trabalhos Futuros
 
-*Indique pontos fortes e pontos a melhorar de maneira geral.*
-*Relacione também quaisquer outras ideias que você tenha para melhorias futuras.*
+A plataforma RolêMarcado apresenta uma base sólida e funcional, com recursos essenciais para gerenciamento de eventos, usuários e categorias. Entre os pontos fortes, destacam-se a organização das rotas, a estrutura clara de cadastro de eventos e a proposta central de conectar pessoas por meio de experiências marcadas em comum.
 
+No entanto, há pontos importantes a melhorar, especialmente em relação ao feed da plataforma. Atualmente, ele ainda não oferece uma experiência completa e fluida na visualização de eventos, usuários e categorias. Um feed mais desenvolvido, dinâmico e atrativo contribuiria diretamente para o engajamento dos usuários e para uma navegação mais intuitiva.
 
+Além disso, é importante padronizar e expandir o direcionamento para páginas específicas de cadastro. Hoje, apenas os eventos possuem uma página própria de criação, diferente da página inicial. Essa mesma lógica poderia ser aplicada aos cadastros de usuários e categorias, promovendo uma navegação mais organizada, separando claramente os espaços de visualização e de criação de conteúdo
 
 ## <a name="c5"></a>5. Referências
