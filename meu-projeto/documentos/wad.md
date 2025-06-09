@@ -337,3 +337,4 @@ No entanto, há pontos importantes a melhorar, especialmente em relação ao fee
 Além disso, é importante padronizar e expandir o direcionamento para páginas específicas de cadastro. Hoje, apenas os eventos possuem uma página própria de criação, diferente da página inicial. Essa mesma lógica poderia ser aplicada aos cadastros de usuários e categorias, promovendo uma navegação mais organizada, separando claramente os espaços de visualização e de criação de conteúdo
 
 ## <a name="c5"></a>5. Referências
+Este projeto foi desenvolvido com base em conhecimentos prévios, não havendo fontes externas a serem citadas na seção de referências."
