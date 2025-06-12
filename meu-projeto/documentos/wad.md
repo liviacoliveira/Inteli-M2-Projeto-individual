@@ -32,9 +32,11 @@ Este sistema é o ponto de partida para uma plataforma completa de gestão de ev
 
 ### 2.1. Personas 
 
+A seção de Personas não foi preenchida, uma vez que a disciplina de Experiência do Usuário já contemplou essa atividade em outro momento. Considerando seu caráter opcional no contexto do projeto integrador, optou-se por não incluí-la nesta entrega.
 
 ### 2.2. User Stories
 
+A seção de User Stories não foi preenchida, uma vez que a disciplina de Experiência do Usuário já contemplou essa atividade em outro momento. Considerando seu caráter opcional no contexto do projeto integrador, optou-se por não incluí-la nesta entrega.
 
 ---
 
@@ -202,14 +204,16 @@ Um diagrama de arquitetura é um desenho técnico que mostra como as partes de u
 
 ### 3.3. Wireframes 
 
+A seção de wireframes não foi preenchida, uma vez que a disciplina de Experiência do Usuário já contemplou essa atividade em outro momento. Considerando seu caráter opcional no contexto do projeto integrador, optou-se por não incluí-la nesta entrega.
 
 
 ### 3.4. Guia de estilos 
 
-
+A seção de Guia de estilos não foi preenchida, uma vez que a disciplina de Experiência do Usuário já contemplou essa atividade em outro momento. Considerando seu caráter opcional no contexto do projeto integrador, optou-se por não incluí-la nesta entrega.
 
 ### 3.5. Protótipo de alta fidelidade 
 
+A seção de Protótipo de alta fidelidade não foi preenchida, uma vez que a disciplina de Experiência do Usuário já contemplou essa atividade em outro momento. Considerando seu caráter opcional no contexto do projeto integrador, optou-se por não incluí-la nesta entrega.
 
 ### 3.6. WebAPI e endpoints 
 
@@ -321,12 +325,40 @@ A página principal dá as boas-vindas ao usuário com a mensagem "Bem-vindo ao 
 ---
 
 
-## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
+## <a name="c4"></a>4. Desenvolvimento da Aplicação Web 
 
-### 4.1 Demonstração do Sistema Web (Semana 8)
+### 4.1 Demonstração do Sistema Web 
 
-*VIDEO: Insira o link do vídeo demonstrativo nesta seção*
-*Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+O RolêMarcado é uma aplicação web desenvolvida como MVP (Produto Mínimo Viável) para viabilizar a divulgação de eventos e a inscrição de usuários interessados. Construído com base na arquitetura MVC (Model-View-Controller), o sistema foi implementado utilizando Node.js com Express.js no backend, EJS para a renderização das views e CSS personalizado para o layout visual.
+
+Apesar de ser uma versão simplificada, o sistema entregue conta com as principais funcionalidades essenciais para o funcionamento básico da plataforma:
+
+- **Cadastro e acesso de Usuários:** O sistema permite que novos usuários se cadastrem informando nome, e-mail e senha, e acessem seu perfil em sessões básicas controladas por ID. Não há autenticação avançada, como validação de credenciais, criptografia de senhas ou uso de tokens.
+
+- **Criação de Eventos:** Usuários podem adicionar, editar e excluir eventos, preenchendo dados como nome, data, descrição, local e categoria.
+
+- **Listagem e visualização de Eventos:** Usuários podem visualizar a lista de eventos disponíveis, organizados por categoria.
+
+- **Inscrição em Eventos:** Usuários podem se inscrever e cancelar a inscrição em eventos. O sistema evita inscrições duplicadas e garante integridade nas relações.
+
+- **Gestão de Categorias:** Usuários podem adicionar, editar e excluir categorias, utilizadas para organizar os eventos.
+
+##### Aspectos Técnicos
+- O backend foi desenvolvido sem ORM, utilizando SQL puro nas operações de banco de dados.
+
+- O frontend foi desenvolvido com EJS, estruturando páginas dinâmicas baseadas em dados passados pelo servidor.
+
+- Toda a lógica de negócio está centralizada nos controllers, com rotas organizadas por entidade.
+
+- A interface é simples e funcional.
+
+- O sistema ainda não conta com funcionalidades de comentários, buscas ou autenticação avançada (como JWT).
+
+Essa versão representa uma base sólida e funcional, que pode ser expandida futuramente com novos recursos e melhorias visuais.
+
+Segue abaixo o link de um vídeo de demonstração do sistema:
+
+https://www.loom.com/share/235fc6bbcb3a4d60a286a62e9151e883?sid=4eca76c6-f816-4f15-9588-25bba2a36525 
 
 ### 4.2 Conclusões e Trabalhos Futuros
 
@@ -334,7 +366,7 @@ A plataforma RolêMarcado apresenta uma base sólida e funcional, com recursos e
 
 No entanto, há pontos importantes a melhorar, especialmente em relação ao feed da plataforma. Atualmente, ele ainda não oferece uma experiência completa e fluida na visualização de eventos, usuários e categorias. Um feed mais desenvolvido, dinâmico e atrativo contribuiria diretamente para o engajamento dos usuários e para uma navegação mais intuitiva.
 
-Além disso, é importante padronizar e expandir o direcionamento para páginas específicas de cadastro. Hoje, apenas os eventos possuem uma página própria de criação, diferente da página inicial. Essa mesma lógica poderia ser aplicada aos cadastros de usuários e categorias, promovendo uma navegação mais organizada, separando claramente os espaços de visualização e de criação de conteúdo
+Além disso, é importante padronizar e expandir o direcionamento para páginas específicas de cadastro. Hoje, apenas os eventos possuem uma página própria de criação, diferente da página inicial. Essa mesma lógica poderia ser aplicada aos cadastros de usuários e categorias, promovendo uma navegação mais organizada, separando claramente os espaços de visualização e de criação de conteúdo.
 
 ## <a name="c5"></a>5. Referências
-Este projeto foi desenvolvido com base em conhecimentos prévios, não havendo fontes externas a serem citadas na seção de referências."
+Este projeto foi desenvolvido com base em conhecimentos prévios, não havendo fontes externas a serem citadas na seção de referências.

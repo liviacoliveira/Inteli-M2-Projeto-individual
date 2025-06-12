@@ -83,5 +83,5 @@ meu-projeto/
 3. **Inicie o servidor:**
 
 ````
- npm start 
+ node server.js 
  ````
